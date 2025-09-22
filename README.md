@@ -19,7 +19,7 @@ This repository contains a pipeline to process large text datasets into **FinBER
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/Arthurmaffre34/server_data_processing.git
+git clone https://github.com/arthurmaffre/server_data_processing.git
 cd server_data_processing
 ```
 
