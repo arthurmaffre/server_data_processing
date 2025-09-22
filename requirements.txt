@@ -4,3 +4,4 @@ tqdm
 torch
 transformers
 huggingface_hub
+pyarrow
