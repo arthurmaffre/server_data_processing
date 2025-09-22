@@ -23,19 +23,25 @@ git clone https://github.com/Arthurmaffre34/server_data_processing.git
 cd server_data_processing
 ```
 
-### 2. Set up the environment
+### 2. Make scripts executable (important!)
+If you just cloned the repo, make sure the `.sh` scripts are executable:
+```bash
+chmod +x run_pipeline.sh
+```
+
+### 3. Set up the environment
 Run the provided script to create a virtual environment and install dependencies:
 ```bash
 bash run_pipeline.sh
 ```
 
-### 3. Configure Hugging Face
+### 4. Configure Hugging Face
 Before running, export your Hugging Face token (required for private repos or large file uploads):
 ```bash
 export HF_TOKEN="your_huggingface_token"
 ```
 
-### 4. Run the pipeline
+### 5. Run the pipeline
 By default, the pipeline:
 - Downloads a dataset from Hugging Face (`repo_id_download`)
 - Reduces it (optional)
@@ -83,6 +89,7 @@ python main.py \
 - `sub_batch_size` cannot exceed `n_chunks`.
 - Tokenizer must match **FinBERT**, otherwise a warning is raised.
 - GPU (`cuda`) or Apple Silicon (`mps`) is automatically detected.
+- Always run `chmod +x` on `.sh` files if you have execution permission errors.
 
 ---
 
