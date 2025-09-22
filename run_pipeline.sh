@@ -10,7 +10,7 @@ ENV_NAME="finbert_env"
 SCRIPT="main.py"
 
 # If not already set in shell, you can set your HF token here
-# export HF_TOKEN="hf_xxxxxxxxxxxxxxxxxxxxxx"
+export HF_TOKEN="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"
 
 # -------- ENV SETUP --------
 if [ ! -d "$ENV_NAME" ]; then
