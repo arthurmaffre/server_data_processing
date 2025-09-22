@@ -29,20 +29,11 @@ If you just cloned the repo, make sure the `.sh` scripts are executable:
 chmod +x pipeline.sh
 ```
 
-### 3. Configure Hugging Face
-Before running, export your Hugging Face token (required for private repos or large file uploads):
-```bash
-export HF_TOKEN="your_huggingface_token"
-```
+### 3. Run the pipeline
+Since the Hugging Face token is already configured inside `pipeline.sh`, you only need to run:
 
-### 4. Run the pipeline
-The pipeline automatically detects whether you are on a normal server or a managed environment (like Hugging Face Studio).  
-- On a **server/local machine** → creates a `venv` and installs dependencies.  
-- On a **managed Studio** → skips venv and installs into the default environment.  
-
-Run with:
 ```bash
-./pipeline.sh --repo_id_download "Arthurmaffre34/pre-dataset"               --repo_id_upload "Gill-Hack-25-UdeM/Text_Embedding_Dataset"               --sub_batch_size 16               --n_chunks 100               --batch_size 1               --max_file_size_gb 0.5
+./pipeline.sh
 ```
 
 ---
