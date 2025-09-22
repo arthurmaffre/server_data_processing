@@ -115,7 +115,8 @@ class FinBertEmbeddingDataset(Dataset):
             for i in range(0, ids.size(0), self.sub_batch_size):
                 ids_sub = ids[i:i+self.sub_batch_size].to(self.device)
                 mask_sub = mask[i:i+self.sub_batch_size].to(self.device)
-                out = self.model(ids_sub, attention_mask=mask_sub).pooler_output
+                with torch.amp.autocast(device_type=self.device, enabled=use_amp):
+                    out = self.model(ids_sub, attention_mask=mask_sub).pooler_output
                 outputs.append(out.cpu())
 
                 if pbar is not None:
@@ -276,9 +277,16 @@ if __name__ == "__main__":
     # -----------------
     # Step 2: Load model/tokenizer
     # -----------------
-    model = AutoModel.from_pretrained("yiyanghkust/finbert-pretrain")
-    model.eval().to(device)
+    if device == "cuda":
+        model = AutoModel.from_pretrained("yiyanghkust/finbert-pretrain").to(device)
+        use_amp = True
+    else:
+        model = AutoModel.from_pretrained("yiyanghkust/finbert-pretrain").to(device)
+        use_amp = False
+    model.eval()
     tokenizer = AutoTokenizer.from_pretrained("yiyanghkust/finbert-pretrain")
+
+
 
     # -----------------
     # Step 3: Encode dataset
