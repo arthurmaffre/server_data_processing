@@ -9,6 +9,9 @@ set -e  # stop if any command fails
 ENV_NAME="finbert_env"
 SCRIPT="main.py"
 
+# ⚠️ Option: put your HF token here (or leave empty to require export)
+HF_TOKEN="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"   # <-- replace with your token if you want it hardcoded
+
 echo "🔹 Starting pipeline setup..."
 
 # -------- ENV DETECTION --------
@@ -26,11 +29,11 @@ else
 fi
 
 # -------- HUGGINGFACE AUTH --------
-if [ -z "$HF_TOKEN" ]; then
-    echo "⚠️ No HF_TOKEN found. Please set it with: export HF_TOKEN=your_token"
-else
-    echo "🔹 Hugging Face token detected."
+if [ -n "$HF_TOKEN" ]; then
+    echo "🔹 Hugging Face token set from pipeline.sh"
     export HF_TOKEN=$HF_TOKEN
+elif [ -z "$HF_TOKEN" ]; then
+    echo "⚠️ No HF_TOKEN found. Please set it with: export HF_TOKEN=your_token"
 fi
 
 # -------- RUN SCRIPT --------
