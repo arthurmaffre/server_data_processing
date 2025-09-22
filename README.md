@@ -26,14 +26,14 @@ cd server_data_processing
 ### 2. Make scripts executable (important!)
 If you just cloned the repo, make sure the `.sh` scripts are executable:
 ```bash
-chmod +x pipeline.sh
+chmod +x run_pipeline.sh
 ```
 
 ### 3. Run the pipeline
 Since the Hugging Face token is already configured inside `pipeline.sh`, you only need to run:
 
 ```bash
-./pipeline.sh
+./run_pipeline.sh
 ```
 
 ---
